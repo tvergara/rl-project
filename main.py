@@ -47,7 +47,7 @@ if __name__ == '__main__':
     initial_value=0.0
     episodes=100
     seed=42
-    size=25
+    size=100
     kappa=0.1
     random.seed(seed)
 
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     q_learning_steps = run_experiment(
         lambda: q_star_learning(
             budget=budget,
-            k=1,
+            k=k,
             t=t,
             epsilon=epsilon,
             alpha=alpha,
@@ -101,27 +101,27 @@ if __name__ == '__main__':
     # plot_steps(q_learning_steps, q_star_steps)
 
 
-    steps = []
-    kappas = [0, 0.1, 0.3, 1, 1.5, 2.5, 5.0]
-    for selected_kappa in kappas:
-        steps.append(run_experiment(
-            lambda: q_star_learning(
-                budget=budget,
-                k=k,
-                t=t,
-                epsilon=epsilon,
-                alpha=alpha,
-                gamma=gamma,
-                initial_value=initial_value,
-                episodes=episodes,
-                seed=random.randint(1, 2<<20),
-                size=size,
-                kappa=selected_kappa,
-            ),
-            n=n_experiments,
-        ))
+#     steps = []
+#     kappas = [0, 0.1, 0.3, 1, 1.5, 2.5, 5.0]
+#     for selected_kappa in kappas:
+#         steps.append(run_experiment(
+#             lambda: q_star_learning(
+#                 budget=budget,
+#                 k=k,
+#                 t=t,
+#                 epsilon=epsilon,
+#                 alpha=alpha,
+#                 gamma=gamma,
+#                 initial_value=initial_value,
+#                 episodes=episodes,
+#                 seed=random.randint(1, 2<<20),
+#                 size=size,
+#                 kappa=selected_kappa,
+#             ),
+#             n=n_experiments,
+#         ))
 
-    plot_in_range(steps, kappas, q_learning_steps)
+#     plot_in_range(steps, kappas, q_learning_steps)
 
 
 
